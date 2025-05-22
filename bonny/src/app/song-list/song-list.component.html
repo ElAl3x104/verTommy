@@ -1,0 +1,11 @@
+<p>song-list works!</p>
+
+@for(canzoni of data; track canzoni)
+{
+  {{canzoni.title}} 
+<button type="button" (click)="mostraDettagli(canzoni)">dettagli</button>
+}
+@if(dettagli){
+    <app-dettagli-album [dettagli] = "dettagli"></app-dettagli-album>
+}
+

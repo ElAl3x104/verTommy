@@ -3,11 +3,12 @@ import { RouterOutlet } from '@angular/router';
 import { Canzoni } from './model/song.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { SongListComponent } from './song-list/song-list.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, SongListComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -27,7 +28,7 @@ export class AppComponent {
     this.http = http;
     this.loading = true;
     this.o = this.http.get<Canzoni[]>('https://my-json-server.typicode.com/malizia-g/hotel/short-songlist');
-    this.o.subscribe(this.getData);
+    this.o.subscribe(data => this.getData(data));
   }
   getData = (d: Canzoni[]) => {
     this.vettCanzoni = d;
